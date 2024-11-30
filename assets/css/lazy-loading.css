@@ -1,0 +1,41 @@
+/* Lazy loading -tyylit */
+img[loading="lazy"] {
+    opacity: 0;
+    transition: opacity 0.3s ease-in;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+img[loading="lazy"].loaded {
+    opacity: 1;
+}
+
+/* Placeholder-tyylit */
+.lazy-placeholder {
+    position: relative;
+    background: #f0f0f0;
+    overflow: hidden;
+}
+
+.lazy-placeholder::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        transparent 0%,
+        rgba(255, 255, 255, 0.3) 50%,
+        transparent 100%
+    );
+    animation: loading-shimmer 1s infinite;
+}
+
+@keyframes loading-shimmer {
+    100% {
+        left: 100%;
+    }
+}

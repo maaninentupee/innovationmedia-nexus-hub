@@ -1,0 +1,33 @@
+# Copyright (C) 2024 Tony
+# This file is distributed under the GNU General Public License v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Tonyn Mukautettu Teema 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/tonys-theme\n"
+"POT-Creation-Date: 2024-01-01T00:00:00+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2024-01-01T00:00:00+00:00\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: functions.php:123
+msgid "Päävalikko"
+msgstr ""
+
+#: functions.php:124
+msgid "Sivupalkki"
+msgstr ""
+
+#: header.php:25
+msgid "Siirry sisältöön"
+msgstr ""
+
+#: inc/template-tags.php:35
+msgid "Julkaistu"
+msgstr ""
+
+#: inc/template-tags.php:41
+msgid "Kirjoittanut"
+msgstr ""

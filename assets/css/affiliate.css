@@ -1,0 +1,127 @@
+/* Affiliate Button Styles */
+.wp-block-tonys-theme-affiliate-button {
+    margin: 1.5em 0;
+    text-align: center;
+}
+
+.affiliate-button {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+/* Button Styles */
+.style-primary .affiliate-button {
+    background-color: var(--color-primary);
+    color: #ffffff;
+    border: 2px solid var(--color-primary);
+}
+
+.style-primary .affiliate-button:hover {
+    background-color: var(--color-primary-dark, #1a252f);
+    border-color: var(--color-primary-dark, #1a252f);
+}
+
+.style-secondary .affiliate-button {
+    background-color: var(--color-secondary);
+    color: #ffffff;
+    border: 2px solid var(--color-secondary);
+}
+
+.style-secondary .affiliate-button:hover {
+    background-color: var(--color-secondary-dark, #2980b9);
+    border-color: var(--color-secondary-dark, #2980b9);
+}
+
+.style-outline .affiliate-button {
+    background-color: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+}
+
+.style-outline .affiliate-button:hover {
+    background-color: var(--color-primary);
+    color: #ffffff;
+}
+
+.style-cta .affiliate-button {
+    background-color: var(--color-accent);
+    color: #ffffff;
+    border: 2px solid var(--color-accent);
+    font-size: 1.1em;
+    padding: 15px 30px;
+}
+
+.style-cta .affiliate-button:hover {
+    background-color: var(--color-accent-dark, #c0392b);
+    border-color: var(--color-accent-dark, #c0392b);
+}
+
+/* Product Comparison Table */
+.wp-block-tonys-theme-product-comparison {
+    overflow-x: auto;
+    margin: 2em 0;
+}
+
+.product-comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.product-comparison-table th,
+.product-comparison-table td {
+    padding: 1em;
+    text-align: left;
+    border: 1px solid var(--color-border);
+}
+
+.product-comparison-table th {
+    background-color: var(--color-primary);
+    color: #ffffff;
+}
+
+.product-comparison-table tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.product-comparison-table .feature-included {
+    color: var(--color-success);
+}
+
+.product-comparison-table .feature-not-included {
+    color: var(--color-error);
+}
+
+.product-comparison-table .price {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--color-primary);
+}
+
+/* Responsive Table */
+@media screen and (max-width: 768px) {
+    .product-comparison-table {
+        display: block;
+    }
+    
+    .product-comparison-table th {
+        display: none;
+    }
+    
+    .product-comparison-table td {
+        display: block;
+        padding: 0.5em 1em;
+    }
+    
+    .product-comparison-table td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: inline-block;
+        width: 120px;
+    }
+}

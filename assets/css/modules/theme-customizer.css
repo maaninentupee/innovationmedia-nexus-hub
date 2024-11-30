@@ -1,0 +1,262 @@
+/**
+ * Theme Customizer styles
+ */
+
+/* Paneeli */
+.theme-customizer-panel {
+    position: fixed;
+    top: 0;
+    right: -350px;
+    width: 350px;
+    height: 100vh;
+    background: var(--background-color);
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease;
+    z-index: 9999;
+}
+
+.theme-customizer-panel.is-open {
+    right: 0;
+}
+
+/* Avausnappi */
+.theme-customizer-toggle {
+    position: absolute;
+    top: 50%;
+    left: -48px;
+    width: 48px;
+    height: 48px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px 0 0 4px;
+    cursor: pointer;
+    transform: translateY(-50%);
+    transition: background-color 0.2s ease;
+}
+
+.theme-customizer-toggle:hover {
+    background: var(--secondary-color);
+}
+
+.theme-customizer-toggle .dashicons {
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+}
+
+/* Sisältö */
+.theme-customizer-content {
+    height: 100%;
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+.theme-customizer-content h2 {
+    margin: 0 0 2rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+/* Osiot */
+.customizer-section {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #eee;
+}
+
+.customizer-section:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.customizer-section h3 {
+    margin: 0 0 1rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+/* Kontrollit */
+.customizer-control {
+    margin-bottom: 1rem;
+}
+
+.customizer-control label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.customizer-control input[type="color"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 40px;
+    padding: 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.customizer-control input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+.customizer-control input[type="color"]::-webkit-color-swatch {
+    border: none;
+    border-radius: 3px;
+}
+
+.customizer-control input[type="range"] {
+    width: 100%;
+    height: 6px;
+    -webkit-appearance: none;
+    background: #ddd;
+    border-radius: 3px;
+    outline: none;
+}
+
+.customizer-control input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    background: var(--primary-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.customizer-control input[type="range"]::-webkit-slider-thumb:hover {
+    background: var(--secondary-color);
+}
+
+.customizer-control select {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    color: var(--text-color);
+    background: var(--background-color);
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.customizer-control output {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+/* Toiminnot */
+.customizer-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.customizer-actions button {
+    flex: 1;
+    padding: 0.75rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #fff;
+    background: var(--primary-color);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.customizer-actions button.button-secondary {
+    background: var(--secondary-color);
+}
+
+.customizer-actions button:hover {
+    opacity: 0.9;
+}
+
+/* Viestit */
+.customizer-message {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    padding: 1rem 2rem;
+    color: #fff;
+    border-radius: 4px;
+    animation: slideIn 0.3s ease;
+    z-index: 10000;
+}
+
+.customizer-message--success {
+    background: #28a745;
+}
+
+.customizer-message--error {
+    background: #dc3545;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Vierityspalkit */
+.theme-customizer-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.theme-customizer-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.theme-customizer-content::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+.theme-customizer-content::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+}
+
+/* Responsiivisuus */
+@media (max-width: 768px) {
+    .theme-customizer-panel {
+        width: 300px;
+        right: -300px;
+    }
+
+    .customizer-actions {
+        flex-direction: column;
+    }
+}
+
+/* Esteettömyys */
+.theme-customizer-toggle:focus {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .theme-customizer-panel,
+    .customizer-message {
+        transition: none;
+    }
+}
+
+/* Tulostus */
+@media print {
+    .theme-customizer-panel {
+        display: none;
+    }
+}

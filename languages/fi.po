@@ -1,0 +1,44 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: InnovationMedia Nexus Hub\n"
+"POT-Creation-Date: 2024-01-19 12:00+0200\n"
+"PO-Revision-Date: 2024-01-19 12:00+0200\n"
+"Last-Translator: Tony\n"
+"Language-Team: Finnish\n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.0\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: form-validation.js:25
+msgid "Please enter a valid email address"
+msgstr "Syötä kelvollinen sähköpostiosoite"
+
+#: form-validation.js:29
+msgid "Please enter a valid phone number"
+msgstr "Syötä kelvollinen puhelinnumero"
+
+#: form-validation.js:33
+msgid "Please enter a valid URL"
+msgstr "Syötä kelvollinen verkko-osoite"
+
+#: form-validation.js:37
+msgid "This field is required"
+msgstr "Tämä kenttä on pakollinen"
+
+#: form-validation.js:120
+msgid "Sending..."
+msgstr "Lähetetään..."
+
+#: form-validation.js:127
+msgid "An error occurred. Please try again."
+msgstr "Tapahtui virhe. Yritä uudelleen."
+
+#: form-validation.js:134
+msgid "Message sent successfully!"
+msgstr "Viesti lähetetty onnistuneesti!"

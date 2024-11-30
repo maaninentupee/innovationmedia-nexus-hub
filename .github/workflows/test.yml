@@ -1,0 +1,64 @@
+name: Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        php-versions: ['7.4', '8.0', '8.1']
+        wordpress-versions: ['5.9', '6.0', '6.1', '6.2']
+
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: wordpress_test
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php-versions }}
+        extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite, mysql, zip
+        coverage: xdebug
+
+    - name: Install Composer dependencies
+      run: composer install --prefer-dist --no-progress
+
+    - name: Install WordPress
+      run: |
+        composer create-project wp-cli/wp-cli-bundle /tmp/wp-cli
+        /tmp/wp-cli/bin/wp core download --version=${{ matrix.wordpress-versions }} --path=/tmp/wordpress
+        /tmp/wp-cli/bin/wp config create --dbname=wordpress_test --dbuser=root --dbpass=root --dbhost=127.0.0.1 --path=/tmp/wordpress
+        /tmp/wp-cli/bin/wp core install --url=http://localhost --title=Test --admin_user=admin --admin_password=password --admin_email=admin@example.com --path=/tmp/wordpress
+        ln -s $(pwd) /tmp/wordpress/wp-content/themes/tonys-theme
+
+    - name: Run PHP Code Sniffer
+      run: vendor/bin/phpcs
+
+    - name: Run PHPUnit tests
+      run: |
+        cd /tmp/wordpress
+        WP_TESTS_DIR=/tmp/wordpress-tests-lib ../wp-cli/bin/wp scaffold plugin-tests tonys-theme
+        cd wp-content/themes/tonys-theme
+        bash bin/install-wp-tests.sh wordpress_test root root 127.0.0.1 ${{ matrix.wordpress-versions }}
+        vendor/bin/phpunit --coverage-clover=coverage.xml
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v2
+      with:
+        file: /tmp/wordpress/wp-content/themes/tonys-theme/coverage.xml
+        fail_ci_if_error: true

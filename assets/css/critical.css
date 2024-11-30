@@ -1,0 +1,70 @@
+/* Critical CSS - Välttämättömät tyylit sivun ensimmäiseen renderöintiin */
+
+:root {
+    --vari-perus: #333;
+    --vari-korostus: #007bff;
+    --vari-tausta: #ffffff;
+    --vari-teksti: #212529;
+    --fontti-perus: 'Montserrat', sans-serif;
+}
+
+/* Layout */
+body {
+    margin: 0;
+    font-family: var(--fontti-perus);
+    line-height: 1.6;
+    color: var(--vari-teksti);
+    background: var(--vari-tausta);
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Header */
+.site-header {
+    position: relative;
+    z-index: 100;
+    background: var(--vari-tausta);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Navigation */
+.main-navigation {
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .main-navigation {
+        display: none;
+    }
+    .mobile-menu-toggle {
+        display: block;
+    }
+}
+
+/* Hero Section */
+.hero-section {
+    padding: 4rem 0;
+    text-align: center;
+}
+
+.hero-section h1 {
+    font-size: 2.5rem;
+    margin: 0 0 1rem;
+}
+
+/* Content Area */
+.content-area {
+    padding: 2rem 0;
+}
+
+.entry-title {
+    margin: 0 0 1rem;
+    font-size: 2rem;
+    color: var(--vari-perus);
+}

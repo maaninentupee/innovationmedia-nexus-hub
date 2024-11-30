@@ -1,0 +1,1102 @@
+/*
+Theme Name: InnovationMedia Nexus Hub
+Theme URI: https://innovationmedia-nexus-hub.local
+Description: Mukautettu WordPress-teema InnovationMedia Nexus Hub -sivustolle. Optimoitu suorituskyky, mukautetut sisältötyypit ja moderni käyttöliittymä.
+Author: Tony
+Author URI: https://innovationmedia-nexus-hub.local
+Version: 1.0.0
+Requires at least: 5.9
+Tested up to: 6.4
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: innovationmedia-nexus-hub
+Domain Path: /languages
+Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready, block-editor-styles, wide-blocks, accessibility-ready
+
+This theme, like WordPress, is licensed under the GPL.
+*/
+
+/* Yleiset muuttujat ja perusasetukset */
+:root {
+    /* Väripaletti */
+    --vari-perus: #333;
+    --vari-korostus: #007bff;
+    --vari-toissijainen: #6c757d;
+    --vari-tausta: #ffffff;
+    --vari-teksti: #212529;
+    --vari-teksti-vaalea: #666666;
+    --vari-reuna: #e1e1e1;
+    --vari-onnistuminen: #2ecc71;
+    --vari-varoitus: #f1c40f;
+    --vari-virhe: #e74c3c;
+
+    /* Typografia */
+    --fontti-perus: 'Montserrat', sans-serif;
+    --fontti-toissijainen: 'Open Sans', sans-serif;
+    --fontti-koko-perus: 16px;
+    --riviväli-perus: 1.6;
+
+    /* Välit */
+    --vali-xs: 0.25rem;
+    --vali-sm: 0.5rem;
+    --vali-md: 1rem;
+    --vali-lg: 1.5rem;
+    --vali-xl: 2rem;
+
+    /* Säiliö */
+    --sailio-leveys: 1200px;
+    --sailio-tyynti: 20px;
+
+    /* Murtokohdat */
+    --murtokohdasm: 576px;
+    --murtokohdadm: 768px;
+    --murtokohdalglg: 992px;
+    --murtokohdaxlxl: 1200px;
+
+    /* Siirtymät */
+    --siirtyma-nopea: 0.2s ease;
+    --siirtyma-normaali: 0.3s ease;
+    --siirtyma-hidas: 0.5s ease;
+
+    /* Reunuskulma */
+    --reunuskulma-sm: 4px;
+    --reunuskulma-md: 8px;
+    --reunuskulma-lg: 16px;
+
+    /* Varjot */
+    --varjo-sm: 0 2px 4px rgba(0,0,0,0.1);
+    --varjo-md: 0 4px 6px rgba(0,0,0,0.1);
+    --varjo-lg: 0 10px 15px rgba(0,0,0,0.1);
+}
+
+/* Critical CSS - Above the fold content */
+:root {
+    --vari-perus: #333;
+    --vari-korostus: #007bff;
+    --vari-toissijainen: #6c757d;
+    --vari-tausta: #ffffff;
+    --vari-teksti: #212529;
+    --vari-teksti-vaalea: #666666;
+    --vali-xs: 0.25rem;
+    --vali-sm: 0.5rem;
+    --vali-md: 1rem;
+    --vali-lg: 1.5rem;
+    --vali-xl: 2rem;
+}
+
+/* Reset and base styles */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Critical layout elements */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    line-height: 1.6;
+    color: var(--vari-teksti);
+    background: var(--vari-tausta);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.site {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.site-content {
+    flex: 1 0 auto;
+}
+
+/* Header and navigation - critical */
+.site-header {
+    position: relative;
+    z-index: 100;
+    background: var(--vari-tausta);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: var(--vali-md) 0;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--vali-md);
+}
+
+/* Mobile menu - critical */
+.mobile-menu-toggle {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: block;
+    }
+    
+    .primary-menu {
+        display: none;
+    }
+}
+
+/* Accessibility - critical */
+.screen-reader-text {
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute !important;
+    width: 1px;
+    word-wrap: normal !important;
+}
+
+.screen-reader-text:focus {
+    background-color: var(--vari-korostus);
+    clip: auto !important;
+    clip-path: none;
+    color: var(--vari-tausta);
+    display: block;
+    font-size: 1em;
+    height: auto;
+    left: 5px;
+    line-height: normal;
+    padding: 15px 23px 14px;
+    text-decoration: none;
+    top: 5px;
+    width: auto;
+    z-index: 100000;
+}
+
+/* Reset ja perustyyli */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: var(--fontti-koko-perus);
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--fontti-toissijainen);
+    line-height: var(--riviväli-perus);
+    color: var(--vari-teksti);
+    background-color: var(--vari-tausta);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--fontti-perus);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: var(--vali-md);
+    color: var(--vari-perus);
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.75rem; }
+h4 { font-size: 1.5rem; }
+h5 { font-size: 1.25rem; }
+h6 { font-size: 1rem; }
+
+p {
+    margin-bottom: var(--vali-md);
+}
+
+a {
+    color: var(--vari-korostus);
+    text-decoration: none;
+    transition: color var(--siirtyma-nopea);
+}
+
+a:hover {
+    color: var(--vari-toissijainen);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Responsiivisuusparannukset */
+@media screen and (max-width: 768px) {
+    .mobile-menu {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100vh;
+        background: var(--vari-tausta);
+        z-index: 1000;
+        transition: transform 0.3s ease-in-out;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        padding: 2rem;
+    }
+
+    .mobile-menu.is-active {
+        transform: translateX(100%);
+    }
+
+    .mobile-menu-toggle {
+        display: block;
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        z-index: 1001;
+        padding: 0.5rem;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+    }
+
+    .mobile-menu-toggle span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        margin: 5px 0;
+        background: var(--vari-teksti);
+        transition: transform 0.3s ease;
+    }
+
+    .mobile-menu-toggle.is-active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .mobile-menu-toggle.is-active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .mobile-menu-toggle.is-active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    /* Paranna touch-aluetta mobiilissa */
+    .nav-primary a {
+        padding: 1rem;
+        display: block;
+    }
+
+    /* Estä scrollaus kun mobiilivalikko on auki */
+    body.mobile-menu-open {
+        overflow: hidden;
+    }
+}
+
+/* Varmista kuvien responsiivisuus */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Taulukkojen responsiivisuus */
+table {
+    width: 100%;
+    overflow-x: auto;
+    display: block;
+}
+
+/* Lomakkeiden responsiivisuus */
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+input[type="number"],
+input[type="tel"],
+textarea {
+    width: 100%;
+    max-width: 100%;
+    padding: 0.5rem;
+}
+
+/* Gutenberg-lohkojen responsiivisuus */
+.wp-block-columns {
+    flex-wrap: wrap;
+}
+
+@media screen and (max-width: 768px) {
+    .wp-block-column {
+        flex-basis: 100% !important;
+        margin-left: 0;
+    }
+}
+
+/* Saavutettavuusparannukset */
+:focus {
+    outline: 2px solid var(--vari-korostus);
+    outline-offset: 2px;
+}
+
+.screen-reader-text {
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    word-wrap: normal !important;
+}
+
+.screen-reader-text:focus {
+    background-color: var(--vari-tausta);
+    clip: auto !important;
+    clip-path: none;
+    color: var(--vari-teksti);
+    display: block;
+    font-size: 1em;
+    height: auto;
+    left: 5px;
+    line-height: normal;
+    padding: 15px 23px 14px;
+    text-decoration: none;
+    top: 5px;
+    width: auto;
+    z-index: 100000;
+}
+
+/* Responsiiviset korjaukset */
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Mobiilivalikon parannukset */
+.mobiili-valikko-painike {
+    display: none;
+    background: none;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.valikko-kuvake {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--vari-perus);
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.valikko-kuvake:before,
+.valikko-kuvake:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--vari-perus);
+    transition: all 0.3s ease;
+}
+
+.valikko-kuvake:before {
+    top: -8px;
+}
+
+.valikko-kuvake:after {
+    bottom: -8px;
+}
+
+/* Mobiilivalikon aktiivitila */
+.mobiili-valikko-aktiivinen .valikko-kuvake {
+    background-color: transparent;
+}
+
+.mobiili-valikko-aktiivinen .valikko-kuvake:before {
+    transform: rotate(45deg);
+    top: 0;
+}
+
+.mobiili-valikko-aktiivinen .valikko-kuvake:after {
+    transform: rotate(-45deg);
+    bottom: 0;
+}
+
+/* Ruudunlukijan teksti */
+.ruudunlukija-teksti {
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    word-wrap: normal !important;
+}
+
+/* Säiliö ja ruudukko */
+.sailio {
+    width: 100%;
+    max-width: var(--sailio-leveys);
+    margin: 0 auto;
+    padding: 0 var(--sailio-tyynti);
+}
+
+.ruudukko {
+    display: grid;
+    gap: var(--vali-md);
+}
+
+/* Otsikko */
+.sivun-otsikko {
+    background: var(--vari-tausta);
+    box-shadow: var(--varjo-sm);
+    position: relative;
+    z-index: 100;
+}
+
+.sivun-brändäys {
+    padding: var(--vali-md) 0;
+}
+
+.sivun-nimi {
+    font-family: var(--fontti-perus);
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.sivun-kuvaus {
+    color: var(--vari-teksti-vaalea);
+    font-size: 0.875rem;
+}
+
+/* Navigointi */
+.paa-navigointi {
+    font-family: var(--fontti-perus);
+}
+
+.paa-navigointi ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.paa-navigointi li {
+    position: relative;
+}
+
+.paa-navigointi a {
+    display: block;
+    padding: var(--vali-sm) var(--vali-md);
+    color: var(--vari-teksti);
+}
+
+.paa-navigointi a:hover {
+    color: var(--vari-korostus);
+}
+
+.valikko-painike {
+    display: none;
+}
+
+/* Mobiilivalikon tyylit */
+.mobiili-valikko-painike {
+    display: none;
+    padding: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.mobiili-valikko {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 300px;
+    height: 100vh;
+    background-color: var(--vari-tausta);
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000;
+    padding: var(--vali-md);
+    overflow-y: auto;
+}
+
+.mobiili-valikko.is-aktiivinen {
+    transform: translateX(-300px);
+}
+
+/* Mobile Menu Animations */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 400px;
+    height: 100vh;
+    background: #fff;
+    transition: transform 0.3s ease-in-out;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.mobile-menu.is-active {
+    transform: translateX(-100%);
+}
+
+.mobile-menu-toggle {
+    display: none;
+    position: relative;
+    z-index: 1001;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: block;
+    }
+
+    .primary-menu {
+        display: none;
+    }
+
+    .site-header {
+        padding: 1rem;
+    }
+
+    .hero-section {
+        padding: 2rem 1rem;
+    }
+
+    .hero-section h1 {
+        font-size: 2rem;
+        line-height: 1.2;
+    }
+
+    .hero-text {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
+    .content-area {
+        padding: 1rem;
+    }
+
+    /* Responsive Tables */
+    table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Responsive Images */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) {
+    .mobile-menu-toggle {
+        padding: 1rem;
+    }
+
+    .mobile-menu a {
+        padding: 1rem;
+        display: block;
+    }
+}
+
+/* Affiliate Link Styles */
+a[rel*="sponsored"] {
+    color: #0073aa;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a[rel*="sponsored"]:hover {
+    color: #005177;
+    text-decoration: underline;
+}
+
+/* Loading States */
+.loading {
+    opacity: 0.7;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+/* Mobile (576px ja alle) */
+@media (max-width: 576px) {
+    :root {
+        --fontti-koko-perus: 14px;
+        --sailio-tyynti: 10px;
+    }
+
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.75rem; }
+    h3 { font-size: 1.5rem; }
+    h4 { font-size: 1.25rem; }
+    h5 { font-size: 1.1rem; }
+    h6 { font-size: 1rem; }
+
+    .sivun-sisalto {
+        padding: var(--vali-md) 0;
+    }
+
+    .sisalto-otsikko {
+        margin-bottom: var(--vali-md);
+    }
+
+    .widget-alue {
+        margin-top: var(--vali-lg);
+    }
+}
+
+/* Tablet (768px ja alle) */
+@media (max-width: 768px) {
+    .site-content {
+        padding: var(--vali-md) 0;
+    }
+
+    .widget-area {
+        margin-top: var(--vali-lg);
+    }
+
+    .archive-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Desktop (992px ja ylös) */
+@media (min-width: 992px) {
+    .site-content {
+        padding: var(--vali-lg) 0;
+    }
+
+    .archive-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .has-sidebar .archive-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Takaisin ylös -painike */
+.takaisin-ylos {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background-color: var(--vari-perus);
+    color: var(--vari-tausta);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    z-index: 999;
+}
+
+.takaisin-ylos::before {
+    content: "↑";
+    font-size: 20px;
+    line-height: 40px;
+}
+
+.takaisin-ylos.is-nakyva {
+    opacity: 1;
+    visibility: visible;
+}
+
+.takaisin-ylos:hover {
+    background-color: var(--vari-korostus);
+}
+
+/* Tulostustyylit */
+@media print {
+    .mobiili-valikko-painike,
+    .sivun-navigointi,
+    .kommentit-alue,
+    .liittyvat-postit {
+        display: none !important;
+    }
+    
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+    
+    .kumppanuustuote {
+        break-inside: avoid;
+    }
+    
+    img {
+        max-width: 100% !important;
+        page-break-inside: avoid;
+    }
+    
+    @page {
+        margin: 2cm;
+    }
+}
+
+/* Sisältö */
+.sivun-sisalto {
+    padding: var(--vali-lg) 0;
+}
+
+.sisalto-otsikko {
+    margin-bottom: var(--vali-lg);
+}
+
+.sisalto-nimi {
+    margin-bottom: var(--vali-sm);
+}
+
+.sisalto-meta {
+    color: var(--vari-teksti-vaalea);
+    font-size: 0.875rem;
+}
+
+.sisalto-sisalto {
+    margin-bottom: var(--vali-lg);
+}
+
+/* Gutenberg-yhteensopivuus */
+/* Tasaukset */
+.tasaus-täysi {
+    margin: 2rem calc(50% - 50vw);
+    max-width: 100vw;
+    width: 100vw;
+}
+
+.tasaus-laaja {
+    margin: 2rem calc(25% - 25vw);
+    max-width: 100vw;
+    width: 100vw;
+}
+
+/* Palikat */
+.wp-palikka-peittää {
+    margin-bottom: var(--vali-lg);
+}
+
+.wp-palikka-painike-linkki {
+    background-color: var(--vari-korostus);
+    border-radius: var(--reunuskulma-sm);
+    transition: background-color var(--siirtyma-nopea);
+}
+
+.wp-palikka-painike-linkki:hover {
+    background-color: var(--vari-toissijainen);
+}
+
+/* Sivupalkki */
+.widget-alue {
+    padding: var(--vali-md);
+    background: var(--vari-tausta);
+    border-radius: var(--reunuskulma-md);
+    box-shadow: var(--varjo-sm);
+}
+
+.widget {
+    margin-bottom: var(--vali-lg);
+}
+
+.widget-otsikko {
+    font-size: 1.25rem;
+    margin-bottom: var(--vali-md);
+}
+
+/* Alatunniste */
+.sivun-alatunniste {
+    background: var(--vari-perus);
+    color: var(--vari-tausta);
+    padding: var(--vali-xl) 0;
+    margin-top: var(--vali-xl);
+}
+
+.alatunniste-widgetit {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--vali-lg);
+}
+
+/* Lomakkeet */
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+input[type="number"],
+input[type="tel"],
+input[type="range"],
+input[type="date"],
+input[type="month"],
+input[type="week"],
+input[type="time"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="color"],
+textarea {
+    padding: var(--vali-sm);
+    border: 1px solid var(--vari-reuna);
+    border-radius: var(--reunuskulma-sm);
+    width: 100%;
+}
+
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+    background: var(--vari-korostus);
+    color: var(--vari-tausta);
+    padding: var(--vali-sm) var(--vali-md);
+    border: none;
+    border-radius: var(--reunuskulma-sm);
+    cursor: pointer;
+    transition: background-color var(--siirtyma-nopea);
+}
+
+button:hover,
+input[type="button"]:hover,
+input[type="reset"]:hover,
+input[type="submit"]:hover {
+    background: var(--vari-toissijainen);
+}
+
+/* Web Fonts */
+@font-face {
+    font-family: 'CustomFont';
+    src: url('assets/fonts/custom-font.woff2') format('woff2');
+    font-display: swap;
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Print Styles */
+@media print {
+    .mobile-menu-toggle,
+    .site-navigation,
+    .sidebar,
+    .comments-area,
+    .site-footer {
+        display: none !important;
+    }
+    
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+    
+    img {
+        max-width: 100% !important;
+        page-break-inside: avoid;
+    }
+    
+    @page {
+        margin: 2cm;
+    }
+}
+
+/* Performance optimizations */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+img.lazy {
+    opacity: 0;
+    transition: opacity 0.3s ease-in;
+}
+
+img.lazy.loaded {
+    opacity: 1;
+}
+
+/* Responsive images */
+@supports (object-fit: cover) {
+    .featured-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+/* Virheilmoitukset */
+.form-error {
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+    animation: slideIn 0.3s ease-in-out;
+}
+
+.form-success {
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+    animation: slideIn 0.3s ease-in-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Lomakkeiden virhetilat */
+.error {
+    border-color: #dc3545 !important;
+}
+
+.error:focus {
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25) !important;
+}
+
+/* Latausanimaatio */
+.loading {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: -0.75rem 0 0 -0.75rem;
+    border: 2px solid var(--vari-korostus);
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Debug-tila */
+.debug-info {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    padding: 1rem;
+    margin: 1rem 0;
+    font-family: monospace;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    overflow-x: auto;
+}
+
+.debug-info pre {
+    margin: 0;
+    white-space: pre-wrap;
+}
+
+/* 404 ja virhe-sivut */
+.error-page {
+    text-align: center;
+    padding: 4rem 1rem;
+}
+
+.error-page h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    color: var(--vari-korostus);
+}
+
+.error-page p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    color: var(--vari-teksti-vaalea);
+}
+
+.error-page .button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: var(--vari-korostus);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.error-page .button:hover {
+    background: var(--vari-toissijainen);
+}
+
+/* Offline-sivu */
+.offline-page {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+}
+
+.offline-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.offline-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--vari-korostus);
+}
+
+.offline-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: var(--vari-teksti);
+}
+
+.reload-button {
+    background: var(--vari-korostus);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.reload-button:hover {
+    background: var(--vari-korostus-tumma);
+}

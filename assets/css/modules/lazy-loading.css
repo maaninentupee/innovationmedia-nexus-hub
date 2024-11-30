@@ -1,0 +1,138 @@
+/**
+ * Lazy Loading styles
+ */
+
+/* Latausindikaattori */
+img[loading="lazy"] {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+img[loading="lazy"].is-loaded {
+    opacity: 1;
+}
+
+/* Placeholder */
+.lazy-placeholder {
+    position: relative;
+    background: #f0f0f0;
+    overflow: hidden;
+}
+
+.lazy-placeholder::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        transparent 0%,
+        rgba(255, 255, 255, 0.3) 50%,
+        transparent 100%
+    );
+    animation: loading-shimmer 1s infinite;
+}
+
+@keyframes loading-shimmer {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(300%);
+    }
+}
+
+/* Blur-up efekti */
+.lazy-blur {
+    filter: blur(10px);
+    transition: filter 0.3s ease;
+}
+
+.lazy-blur.is-loaded {
+    filter: blur(0);
+}
+
+/* Fade-in efekti */
+.lazy-fade {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.lazy-fade.is-loaded {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Zoom-in efekti */
+.lazy-zoom {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.lazy-zoom.is-loaded {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Slide-in efekti */
+.lazy-slide {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.lazy-slide.is-loaded {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Virhetila */
+.lazy-error {
+    position: relative;
+    min-height: 200px;
+    background: #f8d7da;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #721c24;
+    padding: 1rem;
+    text-align: center;
+    border-radius: 4px;
+}
+
+.lazy-error::before {
+    content: '⚠️';
+    display: block;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Responsiivisuus */
+@media (max-width: 768px) {
+    .lazy-error {
+        min-height: 150px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Esteettömyys */
+img[loading="lazy"] {
+    /* Varmista että kuvilla on aina alt-teksti */
+    &:not([alt]) {
+        outline: 2px solid #dc3545;
+    }
+}
+
+/* Tulostus */
+@media print {
+    img[loading="lazy"] {
+        /* Varmista että kuvat näkyvät tulostettaessa */
+        opacity: 1 !important;
+        filter: none !important;
+        transform: none !important;
+    }
+}

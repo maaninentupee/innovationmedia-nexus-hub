@@ -1,0 +1,215 @@
+/* Affiliate Product Styles */
+.affiliate-product {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Product Header */
+.affiliate-product .entry-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.affiliate-product .product-image {
+    margin-bottom: 2rem;
+}
+
+.affiliate-product .product-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Product Meta */
+.product-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin: 1.5rem 0;
+    font-size: 1.1em;
+}
+
+/* Rating Stars */
+.product-rating {
+    font-size: 1.5em;
+    color: var(--color-primary);
+}
+
+.product-rating .star {
+    margin: 0 2px;
+}
+
+.product-rating .star.filled {
+    color: var(--color-accent);
+}
+
+.product-rating .star.empty {
+    color: var(--color-border);
+}
+
+/* Price */
+.product-price {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--color-primary);
+}
+
+.product-price .label {
+    margin-right: 0.5em;
+    color: var(--color-text);
+    font-weight: normal;
+}
+
+/* CTA Button */
+.product-cta {
+    margin: 2rem 0;
+}
+
+.product-cta .button {
+    display: inline-block;
+    padding: 1em 2em;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background-color: var(--color-accent);
+    color: #ffffff;
+    border-radius: var(--border-radius-md);
+    transition: all 0.3s ease;
+}
+
+.product-cta .button:hover {
+    background-color: var(--color-accent-dark, #c0392b);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Pros and Cons */
+.pros-cons-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+    padding: 2rem;
+    background-color: #f8f9fa;
+    border-radius: var(--border-radius-lg);
+}
+
+.pros, .cons {
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.pros h3, .cons h3 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.pros h3 {
+    color: var(--color-success);
+}
+
+.cons h3 {
+    color: var(--color-error);
+}
+
+.pros ul, .cons ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.pros li, .cons li {
+    position: relative;
+    padding-left: 2em;
+    margin-bottom: 1em;
+    line-height: 1.4;
+}
+
+.pros li::before,
+.cons li::before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: bold;
+}
+
+.pros li::before {
+    content: "✓";
+    color: var(--color-success);
+}
+
+.cons li::before {
+    content: "✕";
+    color: var(--color-error);
+}
+
+/* Product Categories and Tags */
+.product-categories,
+.product-tags {
+    margin: 1rem 0;
+    font-size: 0.9em;
+}
+
+.product-categories .label,
+.product-tags .label {
+    font-weight: bold;
+    margin-right: 0.5em;
+}
+
+.product-categories a,
+.product-tags a {
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+.product-categories a:hover,
+.product-tags a:hover {
+    color: var(--color-primary);
+}
+
+/* Disclaimer */
+.product-disclaimer {
+    margin-top: 3rem;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-radius: var(--border-radius-sm);
+    font-size: 0.9em;
+    color: var(--color-text-light);
+    text-align: center;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .affiliate-product {
+        padding: 1rem;
+    }
+
+    .product-meta {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .pros-cons-wrapper {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .pros, .cons {
+        padding: 1rem;
+    }
+
+    .product-cta .button {
+        width: 100%;
+        text-align: center;
+    }
+}

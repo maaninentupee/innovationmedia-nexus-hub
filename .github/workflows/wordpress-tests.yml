@@ -1,0 +1,61 @@
+name: WordPress Teeman Testit
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: wordpress_test
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Asenna PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '7.4'
+        extensions: mysql, zip
+        coverage: xdebug
+        
+    - name: Tarkista PHP versio
+      run: php -v
+
+    - name: Asenna WordPress Testausympäristö
+      run: |
+        bash bin/install-wp-tests.sh wordpress_test root root localhost latest
+        
+    - name: Asenna riippuvuudet
+      run: |
+        composer install --prefer-dist --no-progress
+        
+    - name: Suorita PHPUnit testit
+      run: |
+        ./vendor/bin/phpunit
+
+    - name: Suorita Google Lighthouse testit
+      uses: treosh/lighthouse-ci-action@v9
+      with:
+        urls: |
+          http://localhost/
+        uploadArtifacts: true
+        temporaryPublicStorage: true
+        configPath: './.lighthouserc.json'
+
+    - name: Lähetä testikattavuusraportti
+      uses: codecov/codecov-action@v3
+      with:
+        files: ./clover.xml
+        fail_ci_if_error: true

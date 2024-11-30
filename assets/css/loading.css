@@ -1,0 +1,106 @@
+/* Latausanimaatiot */
+.loader-spinner {
+    width: 40px;
+    height: 40px;
+    margin: 0 auto;
+    border: 3px solid var(--vari-harmaa-vaalea);
+    border-radius: 50%;
+    border-top-color: var(--vari-korostus);
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.form-loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.form-loader p {
+    margin-top: 1rem;
+    color: var(--vari-teksti);
+}
+
+/* Lomakkeiden validointi */
+.form-error {
+    color: var(--vari-virhe);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: none;
+}
+
+.form-global-error {
+    display: block;
+    padding: 1rem;
+    background-color: var(--vari-virhe-tausta);
+    border: 1px solid var(--vari-virhe);
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.form-success {
+    color: var(--vari-onnistuminen);
+    padding: 1rem;
+    background-color: var(--vari-onnistuminen-tausta);
+    border: 1px solid var(--vari-onnistuminen);
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+input.invalid,
+textarea.invalid {
+    border-color: var(--vari-virhe);
+}
+
+input.valid,
+textarea.valid {
+    border-color: var(--vari-onnistuminen);
+}
+
+/* Sivun latausanimaatio */
+.page-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--vari-tausta);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease-out;
+}
+
+.page-loader.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.page-loader .loader-content {
+    text-align: center;
+}
+
+.page-loader .site-logo {
+    max-width: 200px;
+    margin-bottom: 2rem;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}

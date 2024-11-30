@@ -1,0 +1,52 @@
+name: Lighthouse CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+
+    - name: Install dependencies
+      run: |
+        npm install -g @lhci/cli@0.11.x
+        npm install puppeteer
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.0'
+        extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite, mysql
+
+    - name: Install WordPress
+      run: |
+        composer create-project wp-cli/wp-cli-bundle /tmp/wp-cli
+        /tmp/wp-cli/bin/wp core download --path=/tmp/wordpress
+        /tmp/wp-cli/bin/wp config create --dbname=wordpress_test --dbuser=root --dbpass=root --dbhost=127.0.0.1 --path=/tmp/wordpress
+        /tmp/wp-cli/bin/wp core install --url=http://localhost:8080 --title=Test --admin_user=admin --admin_password=password --admin_email=admin@example.com --path=/tmp/wordpress
+        ln -s $(pwd) /tmp/wordpress/wp-content/themes/tonys-theme
+        cd /tmp/wordpress
+        php -S localhost:8080 &
+
+    - name: Run Lighthouse CI
+      run: |
+        lhci autorun --collect.url=http://localhost:8080 --collect.settings.preset=desktop
+      env:
+        LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+
+    - name: Upload Lighthouse report
+      uses: actions/upload-artifact@v2
+      with:
+        name: lighthouse-report
+        path: .lighthouseci

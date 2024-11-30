@@ -1,0 +1,156 @@
+/**
+ * Scroll Effects styles
+ */
+
+/* Header */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: var(--background-color);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* Header tilat */
+.site-header.is-pinned {
+    transform: translateY(0);
+}
+
+.site-header.is-unpinned {
+    transform: translateY(-100%);
+}
+
+.site-header.scroll-up {
+    background: var(--background-color);
+}
+
+.site-header.scroll-down {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+/* Takaisin ylös -painike */
+.back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 3rem;
+    height: 3rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, background-color 0.2s ease;
+    z-index: 999;
+}
+
+.back-to-top.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    background: var(--secondary-color);
+}
+
+.back-to-top:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Smooth Scroll */
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* Vierityspalkit */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 6px;
+    border: 3px solid #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+}
+
+/* Vieritysanimaatiot */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.scroll-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.scroll-reveal--left {
+    transform: translateX(-30px);
+}
+
+.scroll-reveal--right {
+    transform: translateX(30px);
+}
+
+.scroll-reveal--zoom {
+    transform: scale(0.95);
+}
+
+.scroll-reveal--rotate {
+    transform: rotate(-5deg);
+}
+
+/* Responsiivisuus */
+@media (max-width: 768px) {
+    .back-to-top {
+        bottom: 1rem;
+        right: 1rem;
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+}
+
+/* Esteettömyys */
+@media (prefers-reduced-motion: reduce) {
+    .site-header,
+    .back-to-top,
+    .scroll-reveal {
+        transition: none !important;
+    }
+}
+
+/* Tulostus */
+@media print {
+    .site-header {
+        position: static;
+        box-shadow: none;
+    }
+
+    .back-to-top {
+        display: none;
+    }
+}

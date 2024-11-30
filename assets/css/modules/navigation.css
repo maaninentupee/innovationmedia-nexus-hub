@@ -1,0 +1,158 @@
+/**
+ * Navigation styles
+ */
+
+.main-navigation {
+    position: relative;
+    z-index: 100;
+}
+
+/* Mobiilivalikko */
+@media (max-width: 768px) {
+    .main-navigation:not(.is-active) .menu {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: block;
+        padding: 1rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    .menu-toggle:focus {
+        outline: 2px solid var(--primary-color);
+    }
+
+    .menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--background-color);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 1rem;
+    }
+
+    .menu-item {
+        display: block;
+        margin: 0.5rem 0;
+    }
+}
+
+/* Työpöytävalikko */
+@media (min-width: 769px) {
+    .menu-toggle {
+        display: none;
+    }
+
+    .menu {
+        display: flex;
+        gap: 1.5rem;
+    }
+
+    .menu-item {
+        position: relative;
+    }
+
+    .menu-item-has-children > a::after {
+        content: '▼';
+        display: inline-block;
+        margin-left: 0.5rem;
+        font-size: 0.8em;
+        transition: transform 0.2s ease;
+    }
+
+    .menu-item-has-children > a[aria-expanded="true"]::after {
+        transform: rotate(180deg);
+    }
+}
+
+/* Alavalikot */
+.sub-menu {
+    display: none;
+    padding: 0.5rem 0;
+    background: var(--background-color);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.sub-menu.is-active {
+    display: block;
+}
+
+@media (min-width: 769px) {
+    .sub-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 200px;
+        padding: 0.5rem;
+    }
+
+    .sub-menu .menu-item {
+        margin: 0.25rem 0;
+    }
+
+    .sub-menu a {
+        display: block;
+        padding: 0.5rem;
+    }
+}
+
+/* Animaatiot */
+.menu-item a {
+    position: relative;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: color 0.2s ease;
+}
+
+.menu-item a:hover {
+    color: var(--primary-color);
+}
+
+.menu-item a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--primary-color);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.menu-item a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* Esteettömyys */
+.menu-item a:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.menu-item a:focus:not(:focus-visible) {
+    outline: none;
+}
+
+.menu-item a:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Aktiivinen sivu */
+.current-menu-item > a,
+.current-menu-parent > a {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.current-menu-item > a::after,
+.current-menu-parent > a::after {
+    transform: scaleX(1);
+}
