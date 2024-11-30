@@ -1,0 +1,16 @@
+{
+  "name": "innovationmedia-nexus-hub",
+  "version": "1.0.0",
+  "description": "Modern WordPress theme with advanced optimization features",
+  "scripts": {
+    "test": "cypress run",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "cypress:install": "cypress install",
+    "lighthouse": "lhci autorun"
+  },
+  "devDependencies": {
+    "@lhci/cli": "^0.11.0",
+    "cypress": "^12.0.0"
+  }
+}
