@@ -1,0 +1,49 @@
+config:
+  target: "https://your-test-site.local"
+  phases:
+    - duration: 60
+      arrivalRate: 1
+      rampTo: 5
+      name: "Lämmittely"
+    - duration: 300
+      arrivalRate: 5
+      rampTo: 20
+      name: "Montaa käyttäjää"
+    - duration: 600
+      arrivalRate: 20
+      rampTo: 100
+      name: "Korkea kuormitus"
+
+scenarios:
+  - name: "Selaa sivustoa"
+    flow:
+      - get:
+          url: "/"
+      - think: 5
+      - get:
+          url: "/shop"
+      - think: 3
+      - get:
+          url: "/cart"
+      - think: 2
+      - get:
+          url: "/checkout"
+
+  - name: "WooCommerce prosessi"
+    flow:
+      - get:
+          url: "/shop"
+      - think: 2
+      - get:
+          url: "/product/sample-product"
+      - think: 3
+      - post:
+          url: "/?wc-ajax=add_to_cart"
+          json:
+            product_id: "123"
+      - think: 2
+      - get:
+          url: "/cart"
+      - think: 3
+      - get:
+          url: "/checkout"
